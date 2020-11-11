@@ -50,8 +50,7 @@ public class BankConversionFeesController {
 	@HystrixCommand(fallbackMethod="fallbackRetrieveConfiguration")//CB
 	@RequestMapping(value = "/sicoob", method = RequestMethod.GET)
 	public ResponseEntity<BankConversionFee> getSicoobFees() throws URISyntaxException {
-		//BankConversionFee fees = bankConversionFeesFeignClient.retrieveBankFee(new URI(BankEndpointEnum.SICOOB.getEndpoint()));
-		BankConversionFee fees = bankConversionFeesFeignClient.retrieveBankFee(new URI( "localhost:1010"));
+		BankConversionFee fees = bankConversionFeesFeignClient.retrieveBankFee(new URI(BankEndpointEnum.SICOOB.getEndpoint()));
 		return ResponseEntity.status(HttpStatus.OK).body(fees);
 	}
 
@@ -122,7 +121,8 @@ public class BankConversionFeesController {
 	@HystrixCommand(fallbackMethod="fallbackRetrieveConfiguration")
 	@RequestMapping(value = "/itau", method = RequestMethod.GET)
 	public ResponseEntity<BankConversionFee> getItauFees() throws URISyntaxException {
-		BankConversionFee fees = bankConversionFeesFeignClient.retrieveBankFee(new URI(BankEndpointEnum.ITAU.getEndpoint()));
+		//BankConversionFee fees = bankConversionFeesFeignClient.retrieveBankFee(new URI(BankEndpointEnum.ITAU.getEndpoint()));
+		BankConversionFee fees = bankConversionFeesFeignClient.retrieveBankFee(new URI( "localhost:1010"));
 		return ResponseEntity.status(HttpStatus.OK).body(fees);
 
 	}
