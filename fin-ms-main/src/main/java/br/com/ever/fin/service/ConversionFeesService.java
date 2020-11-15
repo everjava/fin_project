@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import br.com.ever.fin.client.BankConversionFeesFeignClient;
+import br.com.ever.fin.client.FinMsBCBFeignClient;
 import br.com.ever.fin.model.BankConversionFee;
 
 @Service
 public class ConversionFeesService implements ConversionFees {
 
 	@Autowired
-	private BankConversionFeesFeignClient bankConversionFees;
+	private FinMsBCBFeignClient bankConversionFees;
 
 	@Override
 	public List<BankConversionFee> getAllFees() {

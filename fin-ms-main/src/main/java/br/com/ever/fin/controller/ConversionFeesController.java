@@ -27,11 +27,10 @@ public class ConversionFeesController {
 	@Autowired
 	private ConversionFees conversionFees;
 
-	@GetMapping("/allFees")
-	public ResponseEntity<ConversionFeeResponse> retrieveAllFees() {
-
+	@GetMapping("/maxmin")
+	public ResponseEntity<ConversionFeeResponse> retrieveMaxMin() {
 		List<BankConversionFee> allFees = conversionFees.getAllFees();
-		allFees.forEach(s -> System.out.println(s));
+		allFees.forEach(s -> System.out.println(s.toString()));
 
 		BankConversionFee minFees = minFees(allFees).orElseGet(BankConversionFee::new);
 		BankConversionFee maxFees = maxFees(allFees).orElseGet(BankConversionFee::new);
@@ -41,8 +40,7 @@ public class ConversionFeesController {
 				.maxTaxaConversao(maxFees.getHistoricoTaxas().get(0).getTaxaConversao()) //
 				.minEmissorNome(minFees.getEmissorNome()) //
 				.minTaxaConversao(minFees.getHistoricoTaxas().get(0).getTaxaConversao()).build();
-
-		// return ResponseEntity.status(HttpStatus.OK).body(allFees);
+		
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
@@ -74,6 +72,14 @@ public class ConversionFeesController {
 		System.out.println("MINN  ==  " + minn.get());
 		return minn;
 
+	}
+	
+	
+	@GetMapping("/allfees")
+	public ResponseEntity<List<BankConversionFee>>  retrieveAllFees() {
+		List<BankConversionFee> allFees = conversionFees.getAllFees();
+		allFees.forEach(s -> System.out.println(s));
+		return ResponseEntity.status(HttpStatus.OK).body(allFees);
 	}
 
 //	private void old(List<BankConversionFee> allFees) {

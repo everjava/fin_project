@@ -12,7 +12,7 @@ import feign.RequestLine;
  * @author everson
  *
  */
-@FeignClient("bankConversionFeesFeignClient")
+@FeignClient(name = "bankConversionFeesFeignClient")
 ////@RibbonClient(name="currency-exchange-service")
 public interface BankConversionFeesFeignClient {
 	

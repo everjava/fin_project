@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.ever.fin.model.BankConversionFee;
 
-@FeignClient("fin-ms-bcb")
-public interface BankConversionFeesFeignClient {
+@FeignClient(name ="fin-ms-bcb",fallbackFactory = FinMsBCBClientFallbackFactory.class)
+public interface FinMsBCBFeignClient {
 
 	@RequestMapping(value = "/cardfees/sicoob", method = RequestMethod.GET)
 	ResponseEntity<BankConversionFee> getSicoobFees();
